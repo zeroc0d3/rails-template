@@ -5,14 +5,16 @@ def setup!
     test "ruby -v" => ruby_version
     run  "gem install bundler --no-document --conservative"
     run  "bundle install"
+    run  "bin/yarn install" if File.exist?("yarn.lock")
     run  "bundle exec overcommit --sign"
     run  "bundle exec overcommit --install"
     copy "example.env"
     copy "config/database.example.yml"
     test_local_env_contains_required_keys
-    run  "bin/rake db:create:all"
-    run  "bin/rake db:migrate"
-    run  "bin/rake db:seed"
+    #run  "bin/rake db:create:all"
+    #run  "bin/rake db:migrate"
+    #run  "bin/rake db:seed"
+    run "bin/rake db:drop:all db:create:all db:migrate db:seed --trace"
   end
 end
 

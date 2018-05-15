@@ -19,7 +19,7 @@ def apply_template!
   template "example.env.tt"
   copy_file "gitignore", ".gitignore", force: true
   copy_file "overcommit.yml", ".overcommit.yml"
-  template "ruby-version.tt", ".ruby-version"
+  template "ruby-version.tt", ".ruby-version", force: true
   copy_file "simplecov", ".simplecov"
 
   copy_file "Capfile" if apply_capistrano?
@@ -33,6 +33,9 @@ def apply_template!
   apply "config/template.rb"
   apply "doc/template.rb"
   apply "lib/template.rb"
+  copy_file "public/404.html", force: true
+  copy_file "public/422.html", force: true
+  copy_file "public/500.html", force: true
   apply "test/template.rb"
 
   apply "variants/bootstrap/template.rb" if apply_bootstrap?
