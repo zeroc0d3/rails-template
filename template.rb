@@ -33,9 +33,9 @@ def apply_template!
   apply "config/template.rb"
   apply "doc/template.rb"
   apply "lib/template.rb"
-  copy_file "public/404.html"
-  copy_file "public/422.html"
-  copy_file "public/500.html"
+  copy_file "public/404.html", force: true
+  copy_file "public/422.html", force: true
+  copy_file "public/500.html", force: true
   apply "test/template.rb"
 
   apply "variants/bootstrap/template.rb" if apply_bootstrap?
