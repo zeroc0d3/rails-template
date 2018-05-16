@@ -39,6 +39,9 @@ def apply_template!
   copy_file "public/500.html", force: true
   apply "test/template.rb"
 
+  template "codeship-services.yml.tt", "codeship-services.yml"
+  template "codeship-steps.yml.tt", "codeship-steps.yml"
+
   apply "variants/bootstrap/template.rb" if apply_bootstrap?
 
   git :init unless preexisting_git_repo?
