@@ -13,9 +13,6 @@
 !/log/.keep
 !/tmp/.keep
 
-# Ignore uploaded files in development
-/storage/*
-
 /node_modules
 /yarn-error.log
 
@@ -25,12 +22,13 @@
 /brakeman-output.*
 /coverage
 /test/reports/
-/capybara-*.html
 
 # Ignore results of `rake assets:precompile`.
 /public/assets/
 
 # Never check passwords into source control!
 /config/database.yml
-/config/master.key
 /.env
+
+# Ignore Jetbrains IDE (Ruby Mine)
+/.idea/*

@@ -1,0 +1,36 @@
+web:
+  build: ./
+  links:
+    - postgres
+    - redis
+    - webpack
+  encrypted_env_file: .env.encrypted
+  cached: true
+
+webpack:
+  build: .
+  encrypted_env_file: .env.encrypted
+  command: ./bin/webpack-dev-server --inline true
+  volumes:
+    - '.:/app'
+  cached: true
+
+postgres:
+  image: 'postgres:10-alpine'
+  environment:
+    POSTGRES_USER: 'rails-template'
+    POSTGRES_PASSWORD: 'rails-template-password'
+  cached: true
+
+redis:
+  image: 'redis:3.7-alpine'
+  command: redis-server --requirepass yourpassword
+  volumes:
+    - 'redis:/data'
+  cached: true
+
+# codeship_heroku_deployment:
+#   image: codeship/heroku-deployment
+#   encrypted_env_file: deployment.env.encrypted
+#   volumes:
+#     - ./:/deploy
