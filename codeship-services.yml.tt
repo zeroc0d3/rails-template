@@ -18,13 +18,13 @@ webpack:
 postgres:
   image: 'postgres:10-alpine'
   environment:
-    POSTGRES_USER: 'rails-template'
-    POSTGRES_PASSWORD: 'rails-template-password'
+    POSTGRES_USER: 'admin'
+    POSTGRES_PASSWORD: 'password'
   cached: true
 
 redis:
   image: 'redis:3.7-alpine'
-  command: redis-server --requirepass yourpassword
+  command: redis-server --requirepass password
   volumes:
     - 'redis:/data'
   cached: true
